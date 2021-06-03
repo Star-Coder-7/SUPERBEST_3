@@ -41,7 +41,7 @@ function addCookieItem(productId, action){
 
 	if (action == 'add'){
 		if (cart[productId] == undefined){
-		cart[productId] = {'quantity': 1}
+		    cart[productId] = {'quantity': 1}
 
 		}else{
 			cart[productId]['quantity'] += 1
@@ -57,7 +57,7 @@ function addCookieItem(productId, action){
 		}
 	}
 	console.log('CART:', cart)
-	document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+	document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
 
 	location.reload()
 }
