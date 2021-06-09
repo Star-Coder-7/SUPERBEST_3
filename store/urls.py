@@ -10,6 +10,5 @@ urlpatterns = [
     path('process_order/', views.processOrder, name="process_order"),
     path('physical_products/', views.physical, name="physical"),
     path('digital_products/', views.nonPhysical, name="non-physical"),
-    path('view_page/', views.viewPage, name="view_page"),
 
 ]
