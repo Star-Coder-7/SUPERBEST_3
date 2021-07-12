@@ -55,10 +55,11 @@
 
             <br>
             <div class="box-element hidden" id="payment-info">
-                <small><strong><u>Payment Options</u></strong></small>
-                <button class="btn btn-success btn-block" id="make-payment">Make Payment</button>
+                <big><strong><i><center>Payment Options</center></i></strong></big>
+                    <br/>
+                    <div id="paypal-button-container"></div>
+<!--                <button class="btn btn-success btn-block" id="make-payment">Make Payment</button>-->
             </div>
-
         </div>
 
         <div class="col-lg-6">
@@ -73,7 +74,7 @@
                         <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
                         <div style="flex:2"><p><b>{{item.product.name}}</b></p></div>
                         <div style="flex:1"><p><b>£{{item.product.price}}</b></p></div>
-                        <div style="flex:1"><p><b>x{{item.quantity}}</b></p></div>
+                        <div style="flex:1"><p><b>(x{{item.quantity}})</b></p></div>
                     </div>
                 {% endfor %}
 
@@ -82,6 +83,40 @@
             </div>
         </div>
     </div>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=GBP"></script>
+
+    <script>
+        var total = '{{order.get_cart_total}}'
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            style: {
+                color:  'gold',
+                shape:  'rect',
+            },
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value:parseFloat(total).toFixed(2)
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Show a success message to the buyer
+                    submitFormData()
+                });
+            }
+
+        }).render('#paypal-button-container');
+    </script>
 
     <script type="text/javascript">
         var shipping = '{{order.shipping}}'
@@ -114,9 +149,11 @@
             document.getElementById('payment-info').classList.remove("hidden");
         })
 
+        /*
         document.getElementById('make-payment').addEventListener('click', function(e){
             submitFormData()
         })
+        */
 
         function submitFormData(){
             console.log('Payment button clicked')
@@ -172,6 +209,7 @@
 				document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
 
 				window.location.href = "{% url 'store' %}"
+				window.reload()
 
             })
         }

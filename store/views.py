@@ -7,6 +7,24 @@ from .utils import cookieCart, cartData, guestOrder
 from .models import *
 
 
+def clothes(request):
+    data = cartData(request)
+    cartItems = data['cartItems']
+
+    products = Product.objects.all()
+    context = {'products': products, 'cartItems': cartItems}
+    return render(request, 'store/clothes.html', context)
+
+
+def youtuberNeeds(request):
+    data = cartData(request)
+    cartItems = data['cartItems']
+
+    products = Product.objects.all()
+    context = {'products': products, 'cartItems': cartItems}
+    return render(request, 'store/youtuber_needs.html', context)
+
+
 def videoGames(request):
     data = cartData(request)
     cartItems = data['cartItems']

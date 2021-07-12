@@ -14,5 +14,6 @@ urlpatterns = [
     path('DVDs/', views.DVDs, name="DVDs"),
     path('toys/', views.toys, name="toys"),
     path('video_games/', views.videoGames, name="video_games"),
-
+    path('youtuber_needs/', views.youtuberNeeds, name="youtuber_needs"),
+    path('clothes/', views.clothes, name="clothes"),
 ]

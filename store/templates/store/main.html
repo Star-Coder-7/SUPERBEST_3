@@ -79,10 +79,10 @@
                             <b>Categories</b>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#"><strong>Clothes</strong></a></li>
+                            <li><a class="dropdown-item" href="{% url 'clothes' %}"><strong>Clothes</strong></a></li>
                             <li><a class="dropdown-item" href="#"><strong>Vehicles</strong></a></li>
                             <li><a class="dropdown-item" href="#"><strong>Bathroom Products</strong></a></li>
-                            <li><a class="dropdown-item" href="#"><strong>Youtuber Needs</strong></a></li>
+                            <li><a class="dropdown-item" href="{% url 'youtuber_needs' %}"><strong>Youtuber Needs</strong></a></li>
                             <li><a class="dropdown-item" href="#"><strong>School</strong></a></li>
                             <li><a class="dropdown-item" href="{% url 'sports' %}"><strong>Sports</strong></a></li>
                             <li><a class="dropdown-item" href="{% url 'video_games' %}"><strong>Video Games</strong></a></li>
@@ -102,10 +102,14 @@
                     </li>
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
+                    <a href="https://github.com/Star-Coder-7/SUPERBEST_3" target="_blank">
+                        <img id="small" src="{% static 'images/github_logo.png' %}">
+                    </a>
+
                     <a href="#" class="btn btn-warning">Login</a>
 
                     <a href="{% url 'cart' %}">
-                        <img id="cart-icon" src="{% static 'images/cart.png' %}">
+                        <img id="small" src="{% static 'images/cart.png' %}">
                     </a>
                     <p id="cart-total">{{cartItems}}</p>
 
